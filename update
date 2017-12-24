@@ -1,0 +1,17 @@
+#!/bin/sh
+
+sudo echo ""
+
+git pull
+
+composer install --optimize-autoloader --no-dev --no-scripts
+
+./console --env=prod doctrine:migrations:migrate --no-interaction
+
+sudo setfacl -R -m u:`ps aux | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1`:rwx -m u:`whoami`:rwx app/cache app/logs web/uploads/images web/cache
+sudo setfacl -dR -m u:`ps aux | grep -E '[a]pache|[h]ttpd|[_]www|[w]ww-data|[n]ginx' | grep -v root | head -1 | cut -d\  -f1`:rwx -m u:`whoami`:rwx app/cache app/logs web/uploads/images web/cache
+sudo rm -rf app/cache/* web/cache/*
+
+git checkout .
+
+echo "Updated!"

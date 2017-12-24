@@ -1,0 +1,11 @@
+services:
+    validator.mapping.cache.apcu:
+        class: Doctrine\Common\Cache\ApcuCache
+        public: false
+    validator.mapping.cache.doctrine.apcu:
+        class: Symfony\Component\Validator\Mapping\Cache\DoctrineCache
+        public: false
+        arguments: [ '@validator.mapping.cache.apcu' ]
+    serializer.mapping.cache.apcu:
+        class: Doctrine\Common\Cache\ApcuCache
+        public: false

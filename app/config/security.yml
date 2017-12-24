@@ -1,0 +1,48 @@
+security:
+    encoders:
+        KreaLab\CommonBundle\Entity\User:
+            algorithm: bcrypt
+
+    providers:
+        main:
+            entity: { class: CommonBundle:User }
+
+    firewalls:
+        dev:
+            pattern: ^/_(profiler|wdt)/
+            security: false
+        unsecurity:
+            pattern: ^/(bundles)/
+            security: false
+        main:
+            provider: main
+            pattern: ^/
+            anonymous: ~
+            user_checker: security.user_checker
+            form_login:
+                success_handler: common.listeners.login
+                failure_handler: common.listeners.auth_failure
+            logout:
+                success_handler: common.listeners.logout
+
+    role_hierarchy:
+        ROLE_OPERATOR: [ ROLE_USER ]
+        ROLE_SENIOR_OPERATOR: [ ROLE_USER ]
+        ROLE_COURIER: [ ROLE_USER ]
+        ROLE_SUPERVISOR: [ ROLE_USER ]
+        ROLE_CASHIER: [ ROLE_USER ]
+        ROLE_MANAGE_WORKERS: [ ROLE_USER ]
+        ROLE_MANAGE_FILIALS: [ ROLE_USER ]
+        ROLE_ARCHIVARIUS: [ ROLE_USER ]
+        ROLE_ADMIN: [ ROLE_USER, ROLE_MANAGE_WORKERS, ROLE_MANAGE_FILIALS, ROLE_ALLOWED_TO_SWITCH ]
+        ROLE_SUPERADMIN: [ ROLE_ADMIN ]
+        ROLE_TREASURER: [ ROLE_USER ]
+        ROLE_ORDERMAN: [ ROLE_USER ]
+        ROLE_ACQUITTANCEMAN: [ ROLE_USER ]
+        ROLE_STOCKMAN: [ ROLE_USER ]
+        ROLE_REFERENCEMAN: [ ROLE_USER ]
+        ROLE_REPLACER: [ ROLE_USER ]
+
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: ROLE_USER }

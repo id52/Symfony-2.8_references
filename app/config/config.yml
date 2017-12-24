@@ -1,0 +1,103 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: services.yml }
+    - { resource: security.yml }
+
+framework:
+    esi: ~
+    translator: { fallbacks: [ "%locale%" ] }
+    secret: "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form: ~
+    csrf_protection: ~
+    validation: { enable_annotations: true }
+    templating: { engines: ['twig'] }
+    default_locale: "%locale%"
+    trusted_hosts: ~
+    trusted_proxies: ~
+    session:
+        handler_id: common.session.handler.pdo
+        gc_maxlifetime: 3600
+    fragments: ~
+    http_method_override: true
+
+twig:
+    debug: "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    number_format:
+        decimals: 0
+        decimal_point: ','
+        thousands_separator: ' '
+    globals:
+        entity_name_s: null
+        router_root: null
+        router_list: null
+        router_item_add: null
+        router_item_edit: null
+        router_item_delete: null
+        workplace: null
+        tag_category: null
+
+assetic:
+    debug: "%kernel.debug%"
+    use_controller: %kernel.debug%
+    filters:
+        less:
+            node_paths: [ "/usr/local/lib/node_modules" ]
+            apply_to: ".less"
+        yui_css:
+            jar: "/usr/share/yui-compressor/yui-compressor.jar"
+        yui_js:
+            jar: "/usr/share/yui-compressor/yui-compressor.jar"
+
+doctrine:
+    dbal:
+        driver:   "%database_driver%"
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+        dql:
+            datetime_functions:
+                date: DoctrineExtensions\Query\Mysql\Date
+            string_functions:
+                unix_timestamp: \KreaLab\CommonBundle\DQL\UnixTimestamp
+                regexp: DoctrineExtensions\Query\Mysql\Regexp
+                group_concat: DoctrineExtensions\Query\Mysql\GroupConcat
+
+swiftmailer:
+    transport:  "%mailer_transport%"
+    host:       "%mailer_host%"
+    username:   "%mailer_user%"
+    password:   "%mailer_password%"
+    encryption: "%mailer_encryption%"
+    auth_mode:  "%mailer_auth_mode%"
+    password:   "%mailer_password%"
+
+stof_doctrine_extensions:
+    orm:
+        default:
+            timestampable: true
+            sortable: true
+
+liip_imagine:
+    driver: imagick
+    resolvers:
+        default:
+            web_path:
+                cache_prefix: cache
+    filter_sets:
+        image_small:
+            filters:
+                thumbnail: { size: [ 200, 100 ], mode: inset }
+        doc:
+            filters:
+                thumbnail: { size: [ 400, 400 ], mode: inset }

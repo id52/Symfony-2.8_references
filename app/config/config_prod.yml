@@ -1,0 +1,27 @@
+imports:
+    - { resource: config.yml }
+
+framework:
+    validation:
+        cache: validator.mapping.cache.doctrine.apcu
+    serializer:
+        cache: serializer.mapping.cache.apcu
+
+doctrine:
+    orm:
+        metadata_cache_driver: apcu
+        result_cache_driver: apcu
+        query_cache_driver: apcu
+
+monolog:
+    handlers:
+        main:
+            type: fingers_crossed
+            action_level: critical
+            handler: nested
+        nested:
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
+        console:
+            type: console

@@ -1,0 +1,30 @@
+parameters:
+    database_driver:      pdo_mysql
+    database_host:        127.0.0.1
+    database_port:        ~
+    database_name:        references
+    database_user:        references
+    database_password:    references
+
+    mailer_transport:     smtp
+    mailer_host:          127.0.0.1
+    mailer_user:          ~
+    mailer_password:      ~
+    mailer_encryption:    ~
+    mailer_auth_mode:     ~
+    mailer_port:          ~
+
+    locale:               ru
+
+    secret:               31d711324555b9eecf528f814d24316310e703c0
+
+    sender_email:         bot@references.loc
+    sender_name:          Справки
+
+    dev_email:            tigerman@yandex.ru
+    cache_key:            cache_key
+
+    sms_uslugi_ru_login:  login
+    sms_uslugi_ru_pass:   pass
+    sms_uslugi_ru_name:   name
+    sms_uslugi_ru_url:    https://lcab.sms-uslugi.ru/API/XML/send.php

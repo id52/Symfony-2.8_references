@@ -1,0 +1,108 @@
+{
+    "type": "project",
+    "name": "references",
+    "autoload": {
+        "psr-4": { "": "src/" },
+        "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
+    },
+    "require": {
+        "php": ">=5.5.9",
+        "symfony/symfony": "2.8.*",
+        "doctrine/orm": "^2.4.8",
+        "doctrine/doctrine-bundle": "~1.4",
+        "symfony/swiftmailer-bundle": "~2.3",
+        "symfony/monolog-bundle": "~2.4",
+        "sensio/distribution-bundle": "~5.0",
+        "sensio/framework-extra-bundle": "^3.0.2",
+        "incenteev/composer-parameter-handler": "~2.0",
+        "symfony/assetic-bundle": "*",
+        "twig/twig": "1.*",
+        "twig/extensions": "*",
+        "doctrine/doctrine-migrations-bundle": "*",
+        "ocramius/proxy-manager": "1.*",
+        "beberlei/DoctrineExtensions": "*",
+        "stof/doctrine-extensions-bundle": "*",
+        "krealab-services/admin-skeleton-bundle": "1.*",
+        "krealab-services/sms-uslugi-ru-bundle": "1.*",
+        "krealab-services/pdf-form-filler-bundle": "1.*",
+        "nxp/rutils-bundle": "*",
+        "fortawesome/font-awesome": "*",
+        "ckeditor/ckeditor": "*",
+        "eternicode/bootstrap-datepicker": "*"
+    },
+    "require-dev": {
+        "sensio/generator-bundle": "~3.0",
+        "krealab-services/codecheck": "*",
+        "tigerman/doctrine-generate-models-bundle": "0.1.4",
+        "doctrine/doctrine-fixtures-bundle": "*",
+        "components/jquery": "<2.2",
+        "components/jqueryui": "*",
+        "components/bootstrap": "3.*",
+        "blueimp/jquery-file-upload": "*",
+        "robinherbots/jquery.inputmask": "3.3.3",
+        "select2/select2": "*",
+        "select2/select2-bootstrap-theme": "@beta"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+        ],
+        "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+        ]
+    },
+    "config": {
+        "component-dir": "vendor/components",
+        "optimize-autoloader": true,
+        "discard-changes": true
+    },
+    "minimum-stability": "stable",
+    "extra": {
+        "symfony-app-dir": "app",
+        "symfony-web-dir": "web",
+        "symfony-assets-install": "relative",
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml"
+        }
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git@gitlab.krealab.ru:krealab-services/codecheck.git"
+        },
+        {
+            "type": "git",
+            "url": "git@gitlab.krealab.ru:krealab-services/sms-uslugi-ru-bundle.git"
+        },
+        {
+            "type": "git",
+            "url": "git@gitlab.krealab.ru:krealab-services/admin-skeleton-bundle.git"
+        },
+        {
+            "type": "git",
+            "url": "git@gitlab.krealab.ru:krealab-services/pdf-form-filler-bundle.git"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "select2/select2-bootstrap-theme",
+                "version": "0.1.0-beta8",
+                "source": {
+                    "type": "git",
+                    "url": "https://github.com/select2/select2-bootstrap-theme.git",
+                    "reference": "0.1.0-beta.8"
+                }
+            }
+        }
+    ]
+}

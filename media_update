@@ -1,0 +1,6 @@
+#!/bin/sh
+
+./console cache:clear --env=prod
+./console assetic:dump --env=prod
+
+echo "Media updated!"
